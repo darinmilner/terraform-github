@@ -1,0 +1,10 @@
+terraform init -upgrade  = Upgrades to a new specified (or newest version)
+
+terraform plan --out=plan1  create a plan file
+
+terraform console -state="state/terraform.tfstate"  access terraform console 
+
+terraform state list   - shows all resources in tf state 
+
+terraform plan -refresh-only  - check if objects changed outside Terraform 
+terraform state rm "<obj to remove>"
