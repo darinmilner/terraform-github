@@ -3,7 +3,7 @@ locals {
     infra = {
       lang     = "Terraform"
       filename = "main.tf"
-      pages    = true
+      pages    = false
     },
     backend = {
       lang     = "Python"
@@ -11,7 +11,7 @@ locals {
       pages    = false
     }
   }
-  environment = toset(["dev"])
+  environment = toset(["dev", "prod"])
 }
 
 module "dev-repos" {
@@ -23,6 +23,8 @@ module "dev-repos" {
 }
 
 module "deploy-keys" {
-  source    = "./modules/deploy-keys"
-  repo_name = "terraform-review-backend-dev"
+  source     = "./modules/deploy-keys"
+  for_each   = toset(flatten([for k, v in module.dev-repos : keys(v.clone_urls) if k == "dev"]))
+  repo_name  = each.key
+  depends_on = [module.dev-repos]
 }

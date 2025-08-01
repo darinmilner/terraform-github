@@ -3,12 +3,6 @@ variable "repo_name" {
   type        = string
 }
 
-variable "deploy_key_title" {
-  description = "Title for the deploy key in GitHub"
-  type        = string
-  default     = "Terraform-Managed-Deploy-Key"
-}
-
 variable "key_file_path" {
   description = "Absolute path to directory where keys will be saved"
   type        = string

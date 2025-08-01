@@ -4,7 +4,7 @@ resource "tls_private_key" "private_key" {
 
 resource "github_repository_deploy_key" "deploy_key" {
   repository = var.repo_name
-  title      = var.deploy_key_title
+  title      = var.repo_name
   key        = tls_private_key.private_key.public_key_openssh
   read_only  = var.read_only
 }
@@ -20,8 +20,9 @@ resource "local_sensitive_file" "private_key" {
   content         = tls_private_key.private_key.private_key_openssh
   file_permission = "0600"
 
-  provisioner "local-exec" {
-    when = destroy
-    command = "rm -f ${self.filename}"
-  }
+  # Works on Linux and Mac
+  # provisioner "local-exec" {
+  #   when = destroy
+  #   command = "rm -f ${self.filename}"
+  # }
 }
