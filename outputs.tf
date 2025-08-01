@@ -1,9 +1,9 @@
-output "clone_urls" {
-  description = "Clone Urls"
-  value = { for i in github_repository.terraform_repo : i.name => {
-    clone_url = i.http_clone_url,
-    ssh_url   = i.ssh_clone_url,
-    page_url  = try(i.pages[0].html_url, "no page")
-    }
-  }
+output "repo-info" {
+  description = "Repo Information."
+  value       = { for k, v in module.dev-repos : k => v.clone_urls }
+}
+
+output "deploy_key_id" {
+  description = "GitHub deploy key ID"
+  value       = module.deploy-keys.deploy_key_id
 }
