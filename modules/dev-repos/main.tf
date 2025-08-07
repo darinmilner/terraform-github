@@ -37,7 +37,7 @@ resource "github_repository_file" "readme" {
   content = templatefile("${path.module}/templates/readme.tf.tpl", {
     env  = var.env,
     lang = each.value.lang,
-    user = data.github_user.current_user.name,
+    user = var.username,
     repo = each.key
   })
   overwrite_on_create = true # overwrites any existing Readme.md

@@ -8,3 +8,5 @@ terraform state list   - shows all resources in tf state
 
 terraform plan -refresh-only  - check if objects changed outside Terraform 
 terraform state rm "<obj to remove>"
+
+terraform providers schema -json > schema.json  makes a json file of the providers in the project

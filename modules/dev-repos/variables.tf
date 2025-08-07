@@ -29,3 +29,8 @@ variable "env" {
     error_message = "Variable env must be dev or prod"
   }
 }
+
+variable "username" {
+  type        = string
+  description = "Github Username"
+}

@@ -12,5 +12,5 @@ variable "key_file_path" {
 variable "read_only" {
   description = "Whether deploy key has read-only access"
   type        = bool
-  default     = false   # Allows writing to repositories
+  default     = false # Allows writing to repositories
 }
