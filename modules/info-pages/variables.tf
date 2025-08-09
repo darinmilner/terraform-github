@@ -8,9 +8,10 @@ variable "repo_name" {
   description = "Repo Name"
 }
 
-variable "env" {
+variable "visibility" {
   type        = string
-  description = "Deployment Environment"
+  description = "Repo visibility is public or private"
+  default     = "public"
 }
 
 variable "avatar" {
@@ -21,4 +22,10 @@ variable "avatar" {
 variable "repos" {
   type        = map(any)
   description = "Repo links map"
+}
+
+variable "run_provisioners" {
+  type        = bool
+  description = "Should Provisioners run"
+  default     = false
 }

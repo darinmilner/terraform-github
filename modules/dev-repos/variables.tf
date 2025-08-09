@@ -34,3 +34,9 @@ variable "username" {
   type        = string
   description = "Github Username"
 }
+
+variable "run_provisioners" {
+  type        = bool
+  description = "Should Provisioners run"
+  default     = false
+}

@@ -21,11 +21,11 @@ resource "terraform_data" "repo_clone" {
   depends_on = [github_repository_file.main, github_repository_file.readme]
 
   provisioner "local-exec" {
-    command = "gh repo view ${github_repository.terraform_repo[each.key].name} --web"
+    command = var.run_provisioners ? "gh repo view ${github_repository.terraform_repo[each.key].name} --web" : "echo 'Skipped repo view'"
   }
 
   provisioner "local-exec" {
-    command = "gh repo clone ${github_repository.terraform_repo[each.key].name}"
+    command = var.run_provisioners ? "gh repo clone ${github_repository.terraform_repo[each.key].name}" : "echo 'Skipped repo clone'"
   }
 }
 

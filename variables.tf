@@ -9,23 +9,14 @@ variable "repo_max" {
   }
 }
 
-variable "repo_names" {
-  type        = map(map(string))
-  description = "Names for Repos"
-
-
-  validation {
-    condition     = length(var.repo_names) <= var.repo_max
-    error_message = "Do not deploy more repos than the allowed max"
-  }
+variable "deploy_key" {
+  type        = bool
+  description = "Variable to create deploy keys."
+  default     = false
 }
 
-variable "env" {
-  type        = string
-  description = "Deployment Environment"
-
-  validation {
-    condition     = contains(["dev", "prod"], var.env)
-    error_message = "Variable env must be dev or prod"
-  }
+variable "environments" {
+  type        = set(string)
+  description = "Set of environments for deployment"
+  default     = ["dev", "prod"]
 }
