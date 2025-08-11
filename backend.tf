@@ -1,5 +1,15 @@
+# terraform {
+#   backend "local" {
+#     path = "state/terraform.tfstate"
+#   }
+# }
+
 terraform {
-  backend "local" {
-    path = "state/terraform.tfstate"
+  cloud {
+    organization = "tf-2025-examprep"
+
+    workspaces {
+      name = "dev-github-project"
+    }
   }
 }

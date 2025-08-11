@@ -40,3 +40,5 @@ terraform.rc
 **/terraform-exam-*
 
 keys/
+
+token.txt
